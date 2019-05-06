@@ -8,3 +8,4 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\Barcod
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.exe
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.pdb
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.GoodsDefinition.resources
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csprojResolveAssemblyReference.cache

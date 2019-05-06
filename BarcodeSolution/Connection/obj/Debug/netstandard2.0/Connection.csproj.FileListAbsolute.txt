@@ -1,0 +1,6 @@
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\netstandard2.0\Connection.deps.json
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\netstandard2.0\Connection.dll
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\netstandard2.0\Connection.csprojResolveAssemblyReference.cache
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\netstandard2.0\Connection.csproj.CoreCompileInputs.cache
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\netstandard2.0\Connection.AssemblyInfoInputs.cache
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\netstandard2.0\Connection.AssemblyInfo.cs
