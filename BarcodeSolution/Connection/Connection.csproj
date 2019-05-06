@@ -41,6 +41,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CrudService\InventoryCrud.cs" />
     <Compile Include="Migrations\201905061541368_PersianMG.cs" />
     <Compile Include="Migrations\201905061541368_PersianMG.Designer.cs">
       <DependentUpon>201905061541368_PersianMG.cs</DependentUpon>
@@ -63,9 +66,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CrudService\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905061541368_PersianMG.resx">
       <DependentUpon>201905061541368_PersianMG.cs</DependentUpon>

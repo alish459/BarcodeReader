@@ -14,3 +14,6 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Entity
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.SqlServer.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csproj.CopyComplete
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Connection.dll
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Connection.pdb
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Connection.dll.config
