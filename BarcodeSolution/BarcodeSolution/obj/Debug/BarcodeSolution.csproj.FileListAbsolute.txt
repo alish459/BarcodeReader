@@ -1,9 +1,10 @@
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.exe.config
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.exe
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.pdb
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csprojResolveAssemblyReference.cache
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.MainForm.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.Properties.Resources.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csproj.GenerateResource.cache
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csproj.CoreCompileInputs.cache
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.exe
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.pdb
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.GoodsDefinition.resources
