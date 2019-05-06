@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeSolution", "BarcodeSolution\BarcodeSolution.csproj", "{D24047A7-4808-41BE-A6B9-9739B72ED8F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Connection", "Connection\Connection.csproj", "{C2CDB95B-6C63-4FBC-B1E5-12A91EF73791}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D24047A7-4808-41BE-A6B9-9739B72ED8F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D24047A7-4808-41BE-A6B9-9739B72ED8F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D24047A7-4808-41BE-A6B9-9739B72ED8F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2CDB95B-6C63-4FBC-B1E5-12A91EF73791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2CDB95B-6C63-4FBC-B1E5-12A91EF73791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2CDB95B-6C63-4FBC-B1E5-12A91EF73791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2CDB95B-6C63-4FBC-B1E5-12A91EF73791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
