@@ -6,9 +6,9 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFrame
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.SqlServer.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csprojResolveAssemblyReference.cache
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.Migrations.PersianMG.resources
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.GenerateResource.cache
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.CoreCompileInputs.cache
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.CopyComplete
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.pdb
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.Migrations.PersianMG.resources
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.GenerateResource.cache
