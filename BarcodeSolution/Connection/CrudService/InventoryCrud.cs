@@ -20,13 +20,13 @@ namespace Connection.CrudService
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 return (from read in context.Inventory
-                 select new Connection.Services.GoodsService
-                 {
-                     GoodsBarcode = read.Barcode,
-                     GoodsID = read.GoodsID,
-                     GoodsName = read.Name,
-                     Total = string.Empty,
-                 }).ToList();
+                        select new Connection.Services.GoodsService
+                        {
+                            GoodsBarcode = read.Barcode,
+                            GoodsID = read.GoodsID,
+                            GoodsName = read.Name,
+                            Total = string.Empty,
+                        }).ToList();
             }
         }
         public static bool Create(Connection.Model.Inventory AllGoodsInstance)
@@ -97,6 +97,21 @@ namespace Connection.CrudService
                 }
             }
         }
+        public static bool CheckForRepetitive(string Code, int ID)
+        {
+            using (var context = new Connection.Model.BarcodeEntity())
+            {
+                try
+                {
+                    return context.Inventory.Any(a => a.Barcode == Code && a.GoodsID != ID);
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());
+                    return false;
+                }
+            }
+        }
         public static string ReadByBarcode(string Code)
         {
             using (var context = new Connection.Model.BarcodeEntity())
@@ -104,6 +119,21 @@ namespace Connection.CrudService
                 try
                 {
                     return context.Inventory.FirstOrDefault(a => a.Barcode == Code).Name;
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());
+                    return string.Empty;
+                }
+            }
+        }
+        public static string ReadByBarcode(string Code,int ID)
+        {
+            using (var context = new Connection.Model.BarcodeEntity())
+            {
+                try
+                {
+                    return context.Inventory.FirstOrDefault(a => a.Barcode == Code && a.GoodsID != ID).Name;
                 }
                 catch (Exception ex)
                 {
