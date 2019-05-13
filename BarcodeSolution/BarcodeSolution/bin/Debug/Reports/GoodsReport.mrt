@@ -6,14 +6,15 @@
         <Alias>Goods</Alias>
         <BusinessObjects isList="true" count="0" />
         <Category>Goods</Category>
-        <Columns isList="true" count="4">
-          <value>GoodsBarcode,System.String</value>
+        <Columns isList="true" count="5">
+          <value>GoodsBarcode1,System.String</value>
+          <value>GoodsBarcode2,System.String</value>
           <value>GoodsID,System.Int32</value>
           <value>GoodsName,System.String</value>
           <value>Total,System.String</value>
         </Columns>
         <Dictionary isRef="1" />
-        <Guid>704d9224eb4d48f9af08659e1e804bed</Guid>
+        <Guid>d95981d7c68e464d88b624bad745e7e8</Guid>
         <Name>Goods</Name>
       </Goods>
     </BusinessObjects>
@@ -173,22 +174,22 @@
         <GroupHeaderBand1 Ref="13" type="GroupHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,1.2,7.9,0.3</ClientRectangle>
-          <Components isList="true" count="3">
+          <Components isList="true" count="4">
             <Text2 Ref="14" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>[252:230:212]</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>0,0,2.6,0.3</ClientRectangle>
+              <ClientRectangle>0,0,2,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <GrowToHeight>True</GrowToHeight>
-              <Guid>00b3690b8c3c43749fedeff231d5c0a4</Guid>
+              <Guid>bbc9755ac3ac4cb5aee7e7758532cd09</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="3" />
               <Parent isRef="13" />
-              <Text>Production NO.</Text>
+              <Text>Name</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
@@ -198,17 +199,17 @@
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>[252:230:212]</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>2.6,0,2.6,0.3</ClientRectangle>
+              <ClientRectangle>2,0,2,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <GrowToHeight>True</GrowToHeight>
-              <Guid>b0d914a29c43467a9d0fe291e5481481</Guid>
+              <Guid>54da3deaa6bc4118bd0a86cc4cbe69f0</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="3" />
               <Parent isRef="13" />
-              <Text>Serial NO.</Text>
+              <Text>Production NO.</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
@@ -218,74 +219,58 @@
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>[252:230:212]</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>5.2,0,2.7,0.3</ClientRectangle>
+              <ClientRectangle>4,0,2,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <GrowToHeight>True</GrowToHeight>
-              <Guid>1f24732c65834e41bfdae76f140a9a7e</Guid>
+              <Guid>7e522fc8f0614b299c87658e88057c52</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text4</Name>
               <Page isRef="3" />
               <Parent isRef="13" />
-              <Text>TOTAL</Text>
+              <Text>Serial NO.</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text4>
+            <Text5 Ref="17" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[252:230:212]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6,0,1.9,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Guid>609fc92da3234ba0b01dead1d9c03ed0</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text5</Name>
+              <Page isRef="3" />
+              <Parent isRef="13" />
+              <Text>Total</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text5>
           </Components>
           <Conditions isList="true" count="0" />
           <Name>GroupHeaderBand1</Name>
           <Page isRef="3" />
           <Parent isRef="3" />
         </GroupHeaderBand1>
-        <Data Ref="17" type="DataBand" isKey="true">
+        <Data Ref="18" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <BusinessObjectGuid>704d9224eb4d48f9af08659e1e804bed</BusinessObjectGuid>
+          <BusinessObjectGuid>d95981d7c68e464d88b624bad745e7e8</BusinessObjectGuid>
           <ClientRectangle>0,1.9,7.9,0.3</ClientRectangle>
-          <Components isList="true" count="3">
-            <DataGoods_GoodsBarcode Ref="18" type="Text" isKey="true">
+          <Components isList="true" count="4">
+            <DataGoods_GoodsName Ref="19" type="Text" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanGrow>True</CanGrow>
-              <ClientRectangle>2.6,0,2.6,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <GrowToHeight>True</GrowToHeight>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataGoods_GoodsBarcode</Name>
-              <Page isRef="3" />
-              <Parent isRef="17" />
-              <Text>{Goods.GoodsBarcode}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataGoods_GoodsBarcode>
-            <DataGoods_Total Ref="19" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>5.2,0,2.7,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Arial,8</Font>
-              <GrowToHeight>True</GrowToHeight>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>DataGoods_Total</Name>
-              <Page isRef="3" />
-              <Parent isRef="17" />
-              <Text>{Goods.Total}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
-              <VertAlignment>Center</VertAlignment>
-            </DataGoods_Total>
-            <DataGoods_GoodsName Ref="20" type="Text" isKey="true">
-              <Border>All;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
-              <ClientRectangle>0,0,2.6,0.3</ClientRectangle>
+              <ClientRectangle>0,0,2,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Arial,8</Font>
               <GrowToHeight>True</GrowToHeight>
@@ -293,12 +278,66 @@
               <Margins>0,0,0,0</Margins>
               <Name>DataGoods_GoodsName</Name>
               <Page isRef="3" />
-              <Parent isRef="17" />
+              <Parent isRef="18" />
               <Text>{Goods.GoodsName}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
               <VertAlignment>Center</VertAlignment>
             </DataGoods_GoodsName>
+            <DataGoods_GoodsBarcode1 Ref="20" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2,0,2,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataGoods_GoodsBarcode1</Name>
+              <Page isRef="3" />
+              <Parent isRef="18" />
+              <Text>{Goods.GoodsBarcode1}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataGoods_GoodsBarcode1>
+            <DataGoods_GoodsBarcode2 Ref="21" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>4,0,2,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataGoods_GoodsBarcode2</Name>
+              <Page isRef="3" />
+              <Parent isRef="18" />
+              <Text>{Goods.GoodsBarcode2}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataGoods_GoodsBarcode2>
+            <DataGoods_Total Ref="22" type="Text" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6,0,1.9,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataGoods_Total</Name>
+              <Page isRef="3" />
+              <Parent isRef="18" />
+              <Text>{Goods.Total}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>HotkeyPrefix=None, LineLimit=False, RightToLeft=False, Trimming=None, WordWrap=True, Angle=0, FirstTabOffset=40, DistanceBetweenTabs=20,</TextOptions>
+              <VertAlignment>Center</VertAlignment>
+            </DataGoods_Total>
           </Components>
           <Conditions isList="true" count="0" />
           <DataSourceName isNull="true" />
@@ -308,7 +347,7 @@
           <Parent isRef="3" />
           <Sort isList="true" count="0" />
         </Data>
-        <GroupFooterBand1 Ref="21" type="GroupFooterBand" isKey="true">
+        <GroupFooterBand1 Ref="23" type="GroupFooterBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,2.6,7.9,0.3</ClientRectangle>
           <Components isList="true" count="0" />
@@ -317,7 +356,7 @@
           <Page isRef="3" />
           <Parent isRef="3" />
         </GroupFooterBand1>
-        <ReportSummaryBand1 Ref="22" type="ReportSummaryBand" isKey="true">
+        <ReportSummaryBand1 Ref="24" type="ReportSummaryBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,3.3,7.9,0.3</ClientRectangle>
           <Components isList="true" count="0" />
@@ -334,13 +373,13 @@
       <PageHeight>11</PageHeight>
       <PageWidth>8.5</PageWidth>
       <Report isRef="0" />
-      <Watermark Ref="23" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="25" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="24" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="26" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -352,10 +391,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>5/10/2019 5:46:50 PM</ReportChanged>
+  <ReportChanged>5/11/2019 9:22:24 PM</ReportChanged>
   <ReportCreated>1/27/2016 9:45:31 AM</ReportCreated>
   <ReportFile>D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Reports\GoodsReport.mrt</ReportFile>
-  <ReportGuid>f0c3a8c0d0be4a69a355044809bf489d</ReportGuid>
+  <ReportGuid>d4fa2d32bd884daa9ce420def1be37a1</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2012.2.1304</ReportVersion>

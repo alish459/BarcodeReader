@@ -11,7 +11,9 @@ namespace Connection.Model
             : base("name=BarcodeEntity")
         {
         }
+
         public virtual DbSet<Inventory> Inventory { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
         }

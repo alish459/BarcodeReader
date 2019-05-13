@@ -13,7 +13,7 @@ namespace Connection.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201905061541368_PersianMG"; }
+            get { return "201905111611040_PersianMG"; }
         }
         
         string IMigrationMetadata.Source

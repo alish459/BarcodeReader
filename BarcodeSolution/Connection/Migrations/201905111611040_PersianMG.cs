@@ -13,7 +13,8 @@ namespace Connection.Migrations
                     {
                         GoodsID = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 500),
-                        Barcode = c.String(maxLength: 500),
+                        Barcode1 = c.String(maxLength: 500),
+                        Barcode2 = c.String(maxLength: 500),
                     })
                 .PrimaryKey(t => t.GoodsID);
             

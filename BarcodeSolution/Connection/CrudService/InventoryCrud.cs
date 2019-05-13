@@ -22,7 +22,8 @@ namespace Connection.CrudService
                 return (from read in context.Inventory
                         select new Connection.Services.GoodsService
                         {
-                            GoodsBarcode = read.Barcode,
+                            GoodsBarcode1 = read.Barcode1,
+                            GoodsBarcode2 = read.Barcode2,
                             GoodsID = read.GoodsID,
                             GoodsName = read.Name,
                             Total = string.Empty,
@@ -54,7 +55,8 @@ namespace Connection.CrudService
                 {
                     var Ins = context.Inventory.Where(a => a.GoodsID == ObjectName.GoodsID).FirstOrDefault();
                     Ins.Name = ObjectName.Name;
-                    Ins.Barcode = ObjectName.Barcode;
+                    Ins.Barcode1 = ObjectName.Barcode1;
+                    Ins.Barcode2 = ObjectName.Barcode2;
                     context.SaveChanges();
                     return true;
                 }
@@ -82,13 +84,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string Code)
+        public static bool CheckForRepetitive(string Code1, string Code2)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.Inventory.Any(a => a.Barcode == Code);
+                    return context.Inventory.Any(a => a.Barcode1 == Code1 || a.Barcode2 == Code2);
                 }
                 catch (Exception ex)
                 {
@@ -97,13 +99,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string Code, int ID)
+        public static bool CheckForRepetitive(string Code1 , string Code2, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.Inventory.Any(a => a.Barcode == Code && a.GoodsID != ID);
+                    return context.Inventory.Any(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.GoodsID != ID);
                 }
                 catch (Exception ex)
                 {
@@ -112,13 +114,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static string ReadByBarcode(string Code)
+        public static string ReadByBarcode(string Code1, string Code2)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.Inventory.FirstOrDefault(a => a.Barcode == Code).Name;
+                    return context.Inventory.FirstOrDefault(a => a.Barcode1 == Code1 || a.Barcode2 == Code2).Name;
                 }
                 catch (Exception ex)
                 {
@@ -127,13 +129,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static string ReadByBarcode(string Code,int ID)
+        public static string ReadByBarcode(string Code1 , string Code2, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.Inventory.FirstOrDefault(a => a.Barcode == Code && a.GoodsID != ID).Name;
+                    return context.Inventory.FirstOrDefault(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.GoodsID != ID).Name;
                 }
                 catch (Exception ex)
                 {

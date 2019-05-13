@@ -17,6 +17,9 @@ namespace Connection.Model
         public string Name { get; set; }
 
         [StringLength(500)]
-        public string Barcode { get; set; }
+        public string Barcode1 { get; set; }
+
+        [StringLength(500)]
+        public string Barcode2 { get; set; }
     }
 }

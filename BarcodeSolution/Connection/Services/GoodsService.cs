@@ -10,7 +10,8 @@ namespace Connection.Services
     {
         public int GoodsID { get; set; }
         public string GoodsName { get; set; }
-        public string GoodsBarcode { get; set; }
+        public string GoodsBarcode1 { get; set; }
+        public string GoodsBarcode2 { get; set; }
         public string Total { get; set; }
     }
 }
