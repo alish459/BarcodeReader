@@ -12,7 +12,8 @@ namespace Connection.Model
         {
         }
 
-        public virtual DbSet<Inventory> Inventory { get; set; }
+        public virtual DbSet<TblBarcode> TblBarcode { get; set; }
+        public virtual DbSet<TblInventory> TblInventory { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

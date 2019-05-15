@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CrudService\BarcodeCrud.cs" />
     <Compile Include="CrudService\InventoryCrud.cs" />
     <Compile Include="Migrations\201905111611040_PersianMG.cs" />
     <Compile Include="Migrations\201905111611040_PersianMG.Designer.cs">
@@ -59,7 +60,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BarcodeEntity.cs" />
-    <Compile Include="Model\Inventory.cs" />
+    <Compile Include="Model\TblInventory.cs" />
+    <Compile Include="Model\TblBarcode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GoodsService.cs" />
   </ItemGroup>

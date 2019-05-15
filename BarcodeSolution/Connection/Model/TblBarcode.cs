@@ -6,20 +6,22 @@ namespace Connection.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Inventory")]
-    public partial class Inventory
+    [Table("TblBarcoed")]
+    public partial class TblBarcode
     {
-        [Key]
-        public int GoodsID { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int RowID { get; set; }
 
         [Required]
-        [StringLength(500)]
-        public string Name { get; set; }
+        public int Shka { get; set; }
 
         [StringLength(500)]
         public string Barcode1 { get; set; }
 
         [StringLength(500)]
         public string Barcode2 { get; set; }
+
+        [ForeignKey("Shka")]
+        public TblInventory Inventories { get; set; }
     }
 }

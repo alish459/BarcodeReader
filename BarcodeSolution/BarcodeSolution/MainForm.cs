@@ -18,7 +18,7 @@ namespace BarcodeSolution
         }
         private void GoodsDefine_Click(object sender, EventArgs e)
         {
-            GoodsDefinition MyForm = new GoodsDefinition();
+            BarcodeDefinition MyForm = new BarcodeDefinition();
             MyForm.ShowDialog();
         }
     }

@@ -105,6 +105,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BarcodeDefinition.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GoodsDefinition.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +119,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BarcodeDefinition.resx">
+      <DependentUpon>BarcodeDefinition.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GoodsDefinition.resx">
       <DependentUpon>GoodsDefinition.cs</DependentUpon>
     </EmbeddedResource>

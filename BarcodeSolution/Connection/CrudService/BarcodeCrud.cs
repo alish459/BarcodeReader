@@ -6,22 +6,39 @@ using System.Threading.Tasks;
 
 namespace Connection.CrudService
 {
-    public class InventoryCrud
+    public class BarcodeCrud
     {
-        public static List<Connection.Model.TblInventory> ReturnAllGoods()
+        public static List<Connection.Model.TblBarcode> ReturnAllGoods()
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
-                return context.TblInventory.AsNoTracking().ToList();
+                return context.TblBarcode.AsNoTracking().ToList();
             }
         }
-        public static bool Create(Connection.Model.TblInventory AllGoodsInstance)
+        public static List<Connection.Services.GoodsService> ReturnAllGoodsByService()
+        {
+            using (var context = new Connection.Model.BarcodeEntity())
+            {
+                return (from read in context.TblBarcode
+                        join read2 in context.TblInventory
+                        on read.Shka equals read2.Shka
+                        select new Connection.Services.GoodsService
+                        {
+                            GoodsBarcode1 = read.Barcode1,
+                            GoodsBarcode2 = read.Barcode2,
+                            GoodsID = read.Shka,
+                            GoodsName = read2.Name,
+                            Total = string.Empty,
+                        }).ToList();
+            }
+        }
+        public static bool Create(Connection.Model.TblBarcode AllGoodsInstance)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    context.TblInventory.Add(AllGoodsInstance);
+                    context.TblBarcode.Add(AllGoodsInstance);
                     context.SaveChanges();
                     return true;
                 }
@@ -32,14 +49,15 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool Update(Connection.Model.TblInventory ObjectName)
+        public static bool Update(Connection.Model.TblBarcode ObjectName)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    var Ins = context.TblInventory.Where(a => a.Shka == ObjectName.Shka).FirstOrDefault();
-                    Ins.Name = ObjectName.Name;
+                    var Ins = context.TblBarcode.Where(a => a.RowID == ObjectName.RowID).FirstOrDefault();
+                    Ins.Barcode1 = ObjectName.Barcode1;
+                    Ins.Barcode2 = ObjectName.Barcode2;
                     context.SaveChanges();
                     return true;
                 }
@@ -56,7 +74,7 @@ namespace Connection.CrudService
             {
                 try
                 {
-                    context.TblInventory.Remove(context.TblInventory.Find(ID));
+                    context.TblBarcode.Remove(context.TblBarcode.Find(ID));
                     context.SaveChanges();
                     return true;
                 }
@@ -67,13 +85,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string naka)
+        public static bool CheckForRepetitive(string Code1, string Code2)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblInventory.Any(a => a.Name == naka);
+                    return context.TblBarcode.Any(a => a.Barcode1 == Code1 || a.Barcode2 == Code2);
                 }
                 catch (Exception ex)
                 {
@@ -82,13 +100,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string naka, int ID)
+        public static bool CheckForRepetitive(string Code1 , string Code2, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblInventory.Any(a => (a.Name == naka) && a.Shka != ID);
+                    return context.TblBarcode.Any(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.Shka != ID);
                 }
                 catch (Exception ex)
                 {
@@ -97,13 +115,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static string ReadByBarcode(string naka)
+        public static string ReadByBarcode(string Code1, string Code2)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblInventory.FirstOrDefault(a => a.Name == naka).Name;
+                    return context.TblBarcode.FirstOrDefault(a => a.Barcode1 == Code1 || a.Barcode2 == Code2).Inventories.Name;
                 }
                 catch (Exception ex)
                 {
@@ -112,13 +130,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static string ReadByBarcode(string naka, int ID)
+        public static string ReadByBarcode(string Code1 , string Code2, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblInventory.FirstOrDefault(a => (a.Name == naka) && a.Shka != ID).Name;
+                    return context.TblBarcode.FirstOrDefault(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.Shka != ID).Inventories.Name;
                 }
                 catch (Exception ex)
                 {
