@@ -464,15 +464,15 @@ namespace BarcodeSolution
                 txtBarcode2.Focus();
                 return;
             }
-            if (Connection.CrudService.InventoryCrud.CheckForRepetitive(txtBarcode1.Text.Trim(), txtBarcode2.Text.Trim()))
+            if (Connection.CrudService.InventoryCrud.CheckForRepetitive(SetBarcode(txtBarcode1.Text.Trim()),SetBarcode(txtBarcode2.Text.Trim())))
             {
-                string naka = Connection.CrudService.InventoryCrud.ReadByBarcode(txtBarcode1.Text.Trim(), txtBarcode2.Text.Trim());
+                string naka = Connection.CrudService.InventoryCrud.ReadByBarcode(SetBarcode(txtBarcode1.Text.Trim()),SetBarcode(txtBarcode2.Text.Trim()));
                 if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
                 {
                     return;
                 }
             }
-            if (Connection.CrudService.InventoryCrud.Create(new Connection.Model.Inventory() { Barcode1 = txtBarcode1.Text.Trim(), Name = txtNaka.Text.Trim(), Barcode2 = txtBarcode2.Text.Trim() }))
+            if (Connection.CrudService.InventoryCrud.Create(new Connection.Model.Inventory() { Barcode1 =SetBarcode(txtBarcode1.Text.Trim(),true), Name = txtNaka.Text.Trim(), Barcode2 =SetBarcode(txtBarcode2.Text.Trim(),true) }))
             {
                 MessageBox.Show("ثبت با موفقيت انجام شد");
                 LoadData();
@@ -510,7 +510,7 @@ namespace BarcodeSolution
             }
             if (txtNakaEdit.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("نام كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error,MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                MessageBox.Show("نام كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
                 txtNakaEdit.Focus();
                 return;
             }
@@ -526,15 +526,15 @@ namespace BarcodeSolution
                 txtBarcodeEdit2.Focus();
                 return;
             }
-            if (Connection.CrudService.InventoryCrud.CheckForRepetitive(txtBarcode1.Text.Trim(), txtBarcodeEdit2.Text.Trim(), Instance.GoodsID))
+            if (Connection.CrudService.InventoryCrud.CheckForRepetitive(SetBarcode(txtBarcodeEdit1.Text.Trim()),SetBarcode(txtBarcodeEdit2.Text.Trim()), Instance.GoodsID))
             {
-                string naka = Connection.CrudService.InventoryCrud.ReadByBarcode(txtBarcode1.Text, txtBarcodeEdit2.Text.Trim(), Instance.GoodsID);
+                string naka = Connection.CrudService.InventoryCrud.ReadByBarcode(SetBarcode(txtBarcodeEdit1.Text),SetBarcode(txtBarcodeEdit2.Text.Trim()), Instance.GoodsID);
                 if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
                 {
                     return;
                 }
             }
-            if (Connection.CrudService.InventoryCrud.Update(new Connection.Model.Inventory() { GoodsID = Instance.GoodsID, Barcode1 = txtBarcodeEdit1.Text.Trim(), Name = txtNakaEdit.Text.Trim(), Barcode2 = txtBarcodeEdit2.Text.Trim()}))
+            if (Connection.CrudService.InventoryCrud.Update(new Connection.Model.Inventory() { GoodsID = Instance.GoodsID, Barcode1 =SetBarcode(txtBarcodeEdit1.Text.Trim(),true), Name = txtNakaEdit.Text.Trim(), Barcode2 =SetBarcode(txtBarcodeEdit2.Text.Trim(),true) }))
             {
                 MessageBox.Show("ويرايش با موفقيت انجام شد");
                 LoadData();
@@ -723,7 +723,6 @@ namespace BarcodeSolution
                 MessageBox.Show(ex.ToString());
             }
         }
-
         private void Print_Click(object sender, EventArgs e)
         {
             try
@@ -765,7 +764,6 @@ namespace BarcodeSolution
                 SendKeys.Send("{TAB}");
             }
         }
-
         private void TxtNaka_Enter(object sender, EventArgs e)
         {
             ((TextBox)sender).BackColor = System.Drawing.Color.YellowGreen;
@@ -773,6 +771,28 @@ namespace BarcodeSolution
         private void TxtNaka_Leave(object sender, EventArgs e)
         {
             ((TextBox)sender).BackColor = System.Drawing.Color.White;
+        }
+        private string SetBarcode(string Code,bool ShowMsg=false)
+        {
+            if (Code.Contains("-"))
+            {
+                return Code;
+            }
+            Code = Code.ToUpper().Replace("S01", "S01-");
+            Code = Code.ToUpper().Replace("P", "P-");
+            if (Code.Contains("S01") && Code.Length >= 11)
+            {
+                Code = Code.Substring(0, 4) + Code.Substring(4, 7) + "-" + (Code.Length > 11 ? Code.Substring(11,Code.Length-11) : "");
+            }
+            else if (Code.Length>=10)
+            {
+                Code = Code.Substring(0, 2) + Code.Substring(2, 8) + "-" + (Code.Length > 10 ? Code.Substring(10, Code.Length - 10) : "");
+            }
+            else if(ShowMsg)
+            {
+                MessageBox.Show("كد وارد شده با فرمت باركد مغايرت دارد\r\n" + Code+"\r\n" + "لطفا كالا را مجددا ويرايش كنيد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+            }
+            return Code;
         }
     }
 }
