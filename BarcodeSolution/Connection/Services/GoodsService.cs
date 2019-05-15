@@ -13,5 +13,6 @@ namespace Connection.Services
         public string GoodsBarcode1 { get; set; }
         public string GoodsBarcode2 { get; set; }
         public string Total { get; set; }
+        public int RowID { get; set; }
     }
 }

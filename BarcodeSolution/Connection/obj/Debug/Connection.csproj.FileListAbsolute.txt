@@ -11,4 +11,3 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.CopyComplete
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.pdb
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csprojResolveAssemblyReference.cache

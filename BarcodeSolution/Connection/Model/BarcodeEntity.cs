@@ -17,6 +17,8 @@ namespace Connection.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Database.SetInitializer<BarcodeEntity>(null);
+            //base.OnModelCreating(modelBuilder);
         }
     }
 }

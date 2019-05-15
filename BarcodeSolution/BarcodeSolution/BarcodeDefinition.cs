@@ -25,8 +25,6 @@ namespace BarcodeSolution
         private System.Windows.Forms.Button btnSaveEdit;
         private System.Windows.Forms.TextBox txtBarcodeEdit1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtNakaEdit;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlMain;
         private List<Connection.Services.GoodsService> Result = new List<Connection.Services.GoodsService>();
         private Connection.Services.GoodsService Instance = new Connection.Services.GoodsService();
@@ -38,15 +36,19 @@ namespace BarcodeSolution
         private TextBox txtBarcodeEdit2;
         private Label label6;
         private bool isBusyProcessing = false;
-        public BarcodeDefinition()
+        private int ShkaGlobal;
+        private string NakaGlobal;
+        public BarcodeDefinition(int ShkaID,string Naka)
         {
             InitializeComponent();
+            ShkaGlobal = ShkaID;
+            NakaGlobal = Naka;
             LoadData();
             SetGrid();
         }
         private void LoadData()
         {
-            Result = Connection.CrudService.BarcodeCrud.ReturnAllGoodsByService();
+            Result = Connection.CrudService.BarcodeCrud.ReturnAllGoodsByService(ShkaGlobal);
             Result.ForEach(a => a.Total = GetTotal(a.GoodsBarcode1, a.GoodsBarcode2));
             string GetTotal(string GoodsBarcode1, string GoodsBarcode2)
             {
@@ -56,8 +58,9 @@ namespace BarcodeSolution
                 var Total = (FirstName.Count() == 3 ? FirstName[1] : "--") + "-" + (Second.Count() == 3 ? Second[1] : "--");
                 return Total;
             }
-            txtBarcode1.Text = txtBarcode2.Text = txtNaka.Text = string.Empty;
-            txtNaka.Focus();
+            txtNaka.Text = NakaGlobal;
+            txtBarcode1.Text = txtBarcode2.Text = string.Empty;
+            txtBarcode1.Focus();
             dataGridView1.DataSource = Result;
             SetPnlFooter();
         }
@@ -108,8 +111,6 @@ namespace BarcodeSolution
             this.btnSaveEdit = new System.Windows.Forms.Button();
             this.txtBarcodeEdit1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtNakaEdit = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -141,23 +142,23 @@ namespace BarcodeSolution
             // txtBarcode2
             // 
             this.txtBarcode2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBarcode2.Location = new System.Drawing.Point(58, 41);
+            this.txtBarcode2.Location = new System.Drawing.Point(14, 41);
             this.txtBarcode2.Name = "txtBarcode2";
             this.txtBarcode2.Size = new System.Drawing.Size(245, 26);
             this.txtBarcode2.TabIndex = 2;
             this.txtBarcode2.Enter += new System.EventHandler(this.TxtNaka_Enter);
-            this.txtBarcode2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNaka_KeyDown);
+            this.txtBarcode2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarcode2_KeyDown);
             this.txtBarcode2.Leave += new System.EventHandler(this.TxtNaka_Leave);
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(309, 42);
+            this.label5.Location = new System.Drawing.Point(265, 42);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 20);
+            this.label5.Size = new System.Drawing.Size(80, 20);
             this.label5.TabIndex = 6;
-            this.label5.Text = "باركد2 :";
+            this.label5.Text = "باركد2 (P) : ";
             // 
             // panel3
             // 
@@ -228,7 +229,7 @@ namespace BarcodeSolution
             // txtBarcode1
             // 
             this.txtBarcode1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBarcode1.Location = new System.Drawing.Point(365, 40);
+            this.txtBarcode1.Location = new System.Drawing.Point(349, 40);
             this.txtBarcode1.Name = "txtBarcode1";
             this.txtBarcode1.Size = new System.Drawing.Size(245, 26);
             this.txtBarcode1.TabIndex = 1;
@@ -240,16 +241,17 @@ namespace BarcodeSolution
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(616, 41);
+            this.label2.Location = new System.Drawing.Point(600, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 20);
+            this.label2.Size = new System.Drawing.Size(81, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "باركد1 :";
+            this.label2.Text = "باركد1 (S) : ";
             // 
             // txtNaka
             // 
             this.txtNaka.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNaka.Location = new System.Drawing.Point(365, 8);
+            this.txtNaka.Enabled = false;
+            this.txtNaka.Location = new System.Drawing.Point(349, 8);
             this.txtNaka.Name = "txtNaka";
             this.txtNaka.Size = new System.Drawing.Size(245, 26);
             this.txtNaka.TabIndex = 0;
@@ -261,7 +263,7 @@ namespace BarcodeSolution
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(616, 9);
+            this.label1.Location = new System.Drawing.Point(600, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 20);
             this.label1.TabIndex = 0;
@@ -274,42 +276,40 @@ namespace BarcodeSolution
             this.pnlFooter.Controls.Add(this.panel2);
             this.pnlFooter.Controls.Add(this.txtBarcodeEdit1);
             this.pnlFooter.Controls.Add(this.label3);
-            this.pnlFooter.Controls.Add(this.txtNakaEdit);
-            this.pnlFooter.Controls.Add(this.label4);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 255);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 283);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(684, 106);
+            this.pnlFooter.Size = new System.Drawing.Size(684, 78);
             this.pnlFooter.TabIndex = 1;
             this.pnlFooter.Visible = false;
             // 
             // txtBarcodeEdit2
             // 
             this.txtBarcodeEdit2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBarcodeEdit2.Location = new System.Drawing.Point(58, 39);
+            this.txtBarcodeEdit2.Location = new System.Drawing.Point(11, 7);
             this.txtBarcodeEdit2.Name = "txtBarcodeEdit2";
             this.txtBarcodeEdit2.Size = new System.Drawing.Size(245, 26);
             this.txtBarcodeEdit2.TabIndex = 2;
             this.txtBarcodeEdit2.Enter += new System.EventHandler(this.TxtNaka_Enter);
-            this.txtBarcodeEdit2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNaka_KeyDown);
+            this.txtBarcodeEdit2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBarcodeEdit2_KeyDown);
             this.txtBarcodeEdit2.Leave += new System.EventHandler(this.TxtNaka_Leave);
             // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(309, 40);
+            this.label6.Location = new System.Drawing.Point(262, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 20);
+            this.label6.Size = new System.Drawing.Size(80, 20);
             this.label6.TabIndex = 10;
-            this.label6.Text = "باركد2 :";
+            this.label6.Text = "باركد2 (P) : ";
             // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.btnCancelEdit);
             this.panel2.Controls.Add(this.btnSaveEdit);
-            this.panel2.Location = new System.Drawing.Point(481, 69);
+            this.panel2.Location = new System.Drawing.Point(481, 37);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(195, 33);
             this.panel2.TabIndex = 3;
@@ -340,7 +340,7 @@ namespace BarcodeSolution
             // txtBarcodeEdit1
             // 
             this.txtBarcodeEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBarcodeEdit1.Location = new System.Drawing.Point(362, 38);
+            this.txtBarcodeEdit1.Location = new System.Drawing.Point(347, 6);
             this.txtBarcodeEdit1.Name = "txtBarcodeEdit1";
             this.txtBarcodeEdit1.Size = new System.Drawing.Size(245, 26);
             this.txtBarcodeEdit1.TabIndex = 1;
@@ -352,32 +352,11 @@ namespace BarcodeSolution
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(613, 39);
+            this.label3.Location = new System.Drawing.Point(598, 7);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 20);
+            this.label3.Size = new System.Drawing.Size(81, 20);
             this.label3.TabIndex = 7;
-            this.label3.Text = "باركد1 :";
-            // 
-            // txtNakaEdit
-            // 
-            this.txtNakaEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNakaEdit.Location = new System.Drawing.Point(362, 5);
-            this.txtNakaEdit.Name = "txtNakaEdit";
-            this.txtNakaEdit.Size = new System.Drawing.Size(245, 26);
-            this.txtNakaEdit.TabIndex = 0;
-            this.txtNakaEdit.Enter += new System.EventHandler(this.TxtNaka_Enter);
-            this.txtNakaEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtNaka_KeyDown);
-            this.txtNakaEdit.Leave += new System.EventHandler(this.TxtNaka_Leave);
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(613, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 20);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "نام كالا :";
+            this.label3.Text = "باركد1 (S) : ";
             // 
             // pnlMain
             // 
@@ -386,7 +365,7 @@ namespace BarcodeSolution
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 108);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(684, 147);
+            this.pnlMain.Size = new System.Drawing.Size(684, 175);
             this.pnlMain.TabIndex = 2;
             // 
             // dataGridView1
@@ -400,7 +379,7 @@ namespace BarcodeSolution
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(684, 121);
+            this.dataGridView1.Size = new System.Drawing.Size(684, 149);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView1_KeyDown);
@@ -417,14 +396,14 @@ namespace BarcodeSolution
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsearch_KeyDown);
             this.txtSearch.Leave += new System.EventHandler(this.TxtNaka_Leave);
             // 
-            // GoodsDefinition
+            // BarcodeDefinition
             // 
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlFooter);
             this.Controls.Add(this.pnlTop);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.Name = "GoodsDefinition";
+            this.Name = "BarcodeDefinition";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "تعريف كالا";
             this.pnlTop.ResumeLayout(false);
@@ -464,15 +443,15 @@ namespace BarcodeSolution
                 txtBarcode2.Focus();
                 return;
             }
-            if (Connection.CrudService.BarcodeCrud.CheckForRepetitive(SetBarcode(txtBarcode1.Text.Trim()),SetBarcode(txtBarcode2.Text.Trim())))
+            if (Connection.CrudService.BarcodeCrud.CheckForRepetitive(SetBarcode(txtBarcode1.Text.Trim()), SetBarcode(txtBarcode2.Text.Trim())))
             {
-                string naka = Connection.CrudService.BarcodeCrud.ReadByBarcode(SetBarcode(txtBarcode1.Text.Trim()),SetBarcode(txtBarcode2.Text.Trim()));
+                string naka = Connection.CrudService.BarcodeCrud.ReadByBarcode(SetBarcode(txtBarcode1.Text.Trim()), SetBarcode(txtBarcode2.Text.Trim()));
                 if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
                 {
                     return;
                 }
             }
-            if (Connection.CrudService.BarcodeCrud.Create(new Connection.Model.TblBarcode() { Barcode1 =SetBarcode(txtBarcode1.Text.Trim(),true), Barcode2 =SetBarcode(txtBarcode2.Text.Trim(),true) }))
+            if (Connection.CrudService.BarcodeCrud.Create(new Connection.Model.TblBarcode() {Shka = ShkaGlobal ,Barcode1 = SetBarcode(txtBarcode1.Text.Trim(), true), Barcode2 = SetBarcode(txtBarcode2.Text.Trim(), true) }))
             {
                 MessageBox.Show("ثبت با موفقيت انجام شد");
                 LoadData();
@@ -492,10 +471,9 @@ namespace BarcodeSolution
                 }
                 Instance = (Connection.Services.GoodsService)dataGridView1.CurrentRow.DataBoundItem;
                 pnlFooter.Visible = true;
-                txtNakaEdit.Text = Instance.GoodsName;
                 txtBarcodeEdit1.Text = Instance.GoodsBarcode1;
                 txtBarcodeEdit2.Text = Instance.GoodsBarcode2;
-                txtNakaEdit.Focus();
+                txtBarcodeEdit1.Focus();
             }
         }
         private void CancelEdit_Click(object sender, EventArgs e)
@@ -506,12 +484,6 @@ namespace BarcodeSolution
         {
             if (MessageBox.Show($"آيا از ويرايش اطمينان داريد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
             {
-                return;
-            }
-            if (txtNakaEdit.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("نام كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
-                txtNakaEdit.Focus();
                 return;
             }
             if (txtBarcodeEdit1.Text.Trim() == string.Empty)
@@ -526,15 +498,15 @@ namespace BarcodeSolution
                 txtBarcodeEdit2.Focus();
                 return;
             }
-            if (Connection.CrudService.BarcodeCrud.CheckForRepetitive(SetBarcode(txtBarcodeEdit1.Text.Trim()),SetBarcode(txtBarcodeEdit2.Text.Trim()), Instance.GoodsID))
+            if (Connection.CrudService.BarcodeCrud.CheckForRepetitive(SetBarcode(txtBarcodeEdit1.Text.Trim()), SetBarcode(txtBarcodeEdit2.Text.Trim()), ShkaGlobal))
             {
-                string naka = Connection.CrudService.BarcodeCrud.ReadByBarcode(SetBarcode(txtBarcodeEdit1.Text),SetBarcode(txtBarcodeEdit2.Text.Trim()), Instance.GoodsID);
+                string naka = Connection.CrudService.BarcodeCrud.ReadByBarcode(SetBarcode(txtBarcodeEdit1.Text), SetBarcode(txtBarcodeEdit2.Text.Trim()), ShkaGlobal);
                 if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
                 {
                     return;
                 }
             }
-            if (Connection.CrudService.BarcodeCrud.Update(new Connection.Model.TblBarcode() { Shka = Instance.GoodsID, Barcode1 =SetBarcode(txtBarcodeEdit1.Text.Trim(),true), Barcode2 =SetBarcode(txtBarcodeEdit2.Text.Trim(),true) }))
+            if (Connection.CrudService.BarcodeCrud.Update(new Connection.Model.TblBarcode() {RowID=Instance.RowID, Shka = ShkaGlobal, Barcode1 = SetBarcode(txtBarcodeEdit1.Text.Trim(), true), Barcode2 = SetBarcode(txtBarcodeEdit2.Text.Trim(), true) }))
             {
                 MessageBox.Show("ويرايش با موفقيت انجام شد");
                 LoadData();
@@ -772,7 +744,7 @@ namespace BarcodeSolution
         {
             ((TextBox)sender).BackColor = System.Drawing.Color.White;
         }
-        private string SetBarcode(string Code,bool ShowMsg=false)
+        private string SetBarcode(string Code, bool ShowMsg = false)
         {
             if (Code.Contains("-"))
             {
@@ -782,17 +754,31 @@ namespace BarcodeSolution
             Code = Code.ToUpper().Replace("P", "P-");
             if (Code.Contains("S01") && Code.Length >= 11)
             {
-                Code = Code.Substring(0, 4) + Code.Substring(4, 7) + "-" + (Code.Length > 11 ? Code.Substring(11,Code.Length-11) : "");
+                Code = Code.Substring(0, 4) + Code.Substring(4, 7) + "-" + (Code.Length > 11 ? Code.Substring(11, Code.Length - 11) : "");
             }
-            else if (Code.Length>=10)
+            else if (Code.Length >= 10)
             {
                 Code = Code.Substring(0, 2) + Code.Substring(2, 8) + "-" + (Code.Length > 10 ? Code.Substring(10, Code.Length - 10) : "");
             }
-            else if(ShowMsg)
+            else if (ShowMsg)
             {
-                MessageBox.Show("كد وارد شده با فرمت باركد مغايرت دارد\r\n" + Code+"\r\n" + "لطفا كالا را مجددا ويرايش كنيد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                MessageBox.Show("كد وارد شده با فرمت باركد مغايرت دارد\r\n" + Code + "\r\n" + "لطفا كالا را مجددا ويرايش كنيد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
             }
             return Code;
+        }
+        private void TxtBarcode2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Save_Click(null, null);
+            }
+        }
+        private void txtBarcodeEdit2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BtnSaveEdit_Click(null, null);
+            }
         }
     }
 }

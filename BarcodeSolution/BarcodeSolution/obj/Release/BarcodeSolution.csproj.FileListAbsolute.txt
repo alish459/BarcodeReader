@@ -22,6 +22,7 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Release\Conn
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Release\EntityFramework.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Release\EntityFramework.SqlServer.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Release\BarcodeSolution.csprojResolveAssemblyReference.cache
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Release\BarcodeSolution.BarcodeDefinition.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Release\BarcodeSolution.GoodsDefinition.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Release\BarcodeSolution.MainForm.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Release\BarcodeSolution.Properties.Resources.resources

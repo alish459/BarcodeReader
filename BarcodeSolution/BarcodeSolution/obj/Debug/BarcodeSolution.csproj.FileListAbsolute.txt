@@ -1,8 +1,8 @@
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.exe.config
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.exe
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.pdb
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Connection.dll
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.SqlServer.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Stimulsoft.Base.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Stimulsoft.Controls.dll
@@ -22,6 +22,8 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Connec
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.SqlServer.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csprojResolveAssemblyReference.cache
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.BarcodeDefinition.resources
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.GoodsDefinition.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.MainForm.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.Properties.Resources.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csproj.GenerateResource.cache
@@ -29,5 +31,3 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\Barcod
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.csproj.CopyComplete
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.exe
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.pdb
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.BarcodeDefinition.resources
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\obj\Debug\BarcodeSolution.GoodsDefinition.resources

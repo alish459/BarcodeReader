@@ -5,6 +5,7 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFra
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFramework.SqlServer.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFramework.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFramework.SqlServer.xml
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csprojResolveAssemblyReference.cache
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.Migrations.PersianMG.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csproj.GenerateResource.cache
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csproj.CoreCompileInputs.cache

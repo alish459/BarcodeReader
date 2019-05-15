@@ -39,6 +39,7 @@ namespace BarcodeSolution
             txtNaka.Focus();
             dataGridView1.DataSource = Result;
             SetPnlFooter();
+            txtNaka.Text = string.Empty;
         }
         private void SetPnlFooter()
         {
@@ -289,7 +290,7 @@ namespace BarcodeSolution
             if (Connection.CrudService.InventoryCrud.CheckForRepetitive(txtNaka.Text.Trim()))
             {
                 string naka = Connection.CrudService.InventoryCrud.ReadByBarcode(txtNaka.Text.Trim());
-                if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
+                if (MessageBox.Show($"نام كالا قبلا تعريف شده است، آيا ميخواهيد مجددا كالا را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
                 {
                     return;
                 }
@@ -337,7 +338,7 @@ namespace BarcodeSolution
             if (Connection.CrudService.InventoryCrud.CheckForRepetitive(txtNakaEdit.Text.Trim(), Instance.Shka))
             {
                 string naka = Connection.CrudService.InventoryCrud.ReadByBarcode(txtNakaEdit.Text.Trim(), Instance.Shka);
-                if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
+                if (MessageBox.Show($"نام كالا قبلا تعريف شده است، آيا ميخواهيد مجددا اين نام كالا را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
                 {
                     return;
                 }
@@ -372,7 +373,7 @@ namespace BarcodeSolution
         {
             try
             {
-                string ColName = "GoodsName";
+                string ColName = "Name";
                 int selected = 0;
                 if (DG.RowCount > 0)
                 {

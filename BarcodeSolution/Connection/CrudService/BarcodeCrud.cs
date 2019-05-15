@@ -15,13 +15,14 @@ namespace Connection.CrudService
                 return context.TblBarcode.AsNoTracking().ToList();
             }
         }
-        public static List<Connection.Services.GoodsService> ReturnAllGoodsByService()
+        public static List<Connection.Services.GoodsService> ReturnAllGoodsByService(int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 return (from read in context.TblBarcode
                         join read2 in context.TblInventory
                         on read.Shka equals read2.Shka
+                        where read.Shka == ID
                         select new Connection.Services.GoodsService
                         {
                             GoodsBarcode1 = read.Barcode1,
@@ -29,6 +30,7 @@ namespace Connection.CrudService
                             GoodsID = read.Shka,
                             GoodsName = read2.Name,
                             Total = string.Empty,
+                            RowID = read.RowID,
                         }).ToList();
             }
         }
@@ -100,7 +102,7 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string Code1 , string Code2, int ID)
+        public static bool CheckForRepetitive(string Code1, string Code2, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
@@ -130,7 +132,7 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static string ReadByBarcode(string Code1 , string Code2, int ID)
+        public static string ReadByBarcode(string Code1, string Code2, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
