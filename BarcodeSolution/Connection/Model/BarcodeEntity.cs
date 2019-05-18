@@ -17,8 +17,27 @@ namespace Connection.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Database.SetInitializer<BarcodeEntity>(null);
-            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<TblBarcode>()
+                .Property(e => e.Forosh)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<TblBarcode>()
+                .Property(e => e.Kharid)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<TblInventory>()
+                .Property(e => e.Forosh)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<TblInventory>()
+                .Property(e => e.Kharid)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<TblInventory>()
+                .HasMany(e => e.TblBarcode)
+                .WithRequired(e => e.TblInventory)
+                .HasForeignKey(e => e.GoodsID)
+                .WillCascadeOnDelete(false);
         }
     }
 }

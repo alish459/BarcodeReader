@@ -6,14 +6,13 @@ namespace Connection.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("TblBarcoed")]
+    [Table("TblBarcode")]
     public partial class TblBarcode
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int RowID { get; set; }
 
-        [Required]
-        public int Shka { get; set; }
+        public int GoodsID { get; set; }
 
         [StringLength(500)]
         public string Barcode1 { get; set; }
@@ -21,7 +20,13 @@ namespace Connection.Model
         [StringLength(500)]
         public string Barcode2 { get; set; }
 
-        [ForeignKey("Shka")]
-        public TblInventory Inventories { get; set; }
+        [StringLength(500)]
+        public string Explain { get; set; }
+
+        public decimal? Forosh { get; set; }
+
+        public decimal? Kharid { get; set; }
+
+        public virtual TblInventory TblInventory { get; set; }
     }
 }

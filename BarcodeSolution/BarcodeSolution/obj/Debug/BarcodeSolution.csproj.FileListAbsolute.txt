@@ -1,8 +1,8 @@
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.exe.config
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.exe
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\BarcodeSolution.pdb
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Connection.dll
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\EntityFramework.SqlServer.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Stimulsoft.Base.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\BarcodeSolution\bin\Debug\Stimulsoft.Controls.dll

@@ -54,9 +54,9 @@
     <Compile Include="Class1.cs" />
     <Compile Include="CrudService\BarcodeCrud.cs" />
     <Compile Include="CrudService\InventoryCrud.cs" />
-    <Compile Include="Migrations\201905111611040_PersianMG.cs" />
-    <Compile Include="Migrations\201905111611040_PersianMG.Designer.cs">
-      <DependentUpon>201905111611040_PersianMG.cs</DependentUpon>
+    <Compile Include="Migrations\201905170906334_PersianMG.cs" />
+    <Compile Include="Migrations\201905170906334_PersianMG.Designer.cs">
+      <DependentUpon>201905170906334_PersianMG.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BarcodeEntity.cs" />
@@ -70,8 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905111611040_PersianMG.resx">
-      <DependentUpon>201905111611040_PersianMG.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905170906334_PersianMG.resx">
+      <DependentUpon>201905170906334_PersianMG.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,13 +21,13 @@ namespace Connection.CrudService
             {
                 return (from read in context.TblBarcode
                         join read2 in context.TblInventory
-                        on read.Shka equals read2.Shka
-                        where read.Shka == ID
+                        on read.GoodsID equals read2.Shka
+                        where read.GoodsID == ID
                         select new Connection.Services.GoodsService
                         {
                             GoodsBarcode1 = read.Barcode1,
                             GoodsBarcode2 = read.Barcode2,
-                            GoodsID = read.Shka,
+                            GoodsID = read.GoodsID,
                             GoodsName = read2.Name,
                             Total = string.Empty,
                             RowID = read.RowID,
@@ -87,13 +87,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string Code1, string Code2)
+        public static bool CheckForRepetitive(string CodeS)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblBarcode.Any(a => a.Barcode1 == Code1 || a.Barcode2 == Code2);
+                    return context.TblBarcode.Any(a => a.Barcode2 == CodeS);
                 }
                 catch (Exception ex)
                 {
@@ -102,13 +102,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string Code1, string Code2, int ID)
+        public static bool CheckForRepetitive(string CodeS, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblBarcode.Any(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.Shka != ID);
+                    return context.TblBarcode.Any(a => (a.Barcode2 == CodeS) && a.GoodsID != ID);
                 }
                 catch (Exception ex)
                 {
@@ -123,7 +123,7 @@ namespace Connection.CrudService
             {
                 try
                 {
-                    return context.TblBarcode.FirstOrDefault(a => a.Barcode1 == Code1 || a.Barcode2 == Code2).Inventories.Name;
+                    return context.TblBarcode.FirstOrDefault(a => a.Barcode1 == Code1 || a.Barcode2 == Code2).TblInventory.Name;
                 }
                 catch (Exception ex)
                 {
@@ -138,7 +138,7 @@ namespace Connection.CrudService
             {
                 try
                 {
-                    return context.TblBarcode.FirstOrDefault(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.Shka != ID).Inventories.Name;
+                    return context.TblBarcode.FirstOrDefault(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.GoodsID != ID).TblInventory.Name;
                 }
                 catch (Exception ex)
                 {
