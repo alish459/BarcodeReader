@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -37,6 +39,7 @@ namespace BarcodeSolution
         private Label label6;
         private bool isBusyProcessing = false;
         private int ShkaGlobal;
+        private Label lblMsg;
         private string NakaGlobal;
         public BarcodeDefinition(int ShkaID, string Naka)
         {
@@ -48,21 +51,30 @@ namespace BarcodeSolution
         }
         private void LoadData()
         {
-            Result = Connection.CrudService.BarcodeCrud.ReturnAllGoodsByService(ShkaGlobal);
-            Result.ForEach(a => a.Total = GetTotal(a.GoodsBarcode1, a.GoodsBarcode2));
-            string GetTotal(string GoodsBarcode1, string GoodsBarcode2)
+            try
             {
-                if (GoodsBarcode2 == null) return "--";
-                var FirstName = GoodsBarcode1.Split('-');
-                var Second = GoodsBarcode2.Split('-');
-                var Total = (FirstName.Count() == 3 ? FirstName[1] : "--") + "-" + (Second.Count() == 3 ? Second[1] : "--");
-                return Total;
+                lblMsg.Text = "پيغام : ";
+                Result = Connection.CrudService.BarcodeCrud.ReturnAllGoodsByService(ShkaGlobal);
+                Result.ForEach(a => a.Total = GetTotal(a.GoodsBarcode1, a.GoodsBarcode2));
+                string GetTotal(string GoodsBarcode1, string GoodsBarcode2)
+                {
+                    if (GoodsBarcode2 == null) return "--";
+                    var FirstName = GoodsBarcode1.Split('-');
+                    var Second = GoodsBarcode2.Split('-');
+                    var Total = (FirstName.Count() == 3 ? FirstName[1] : "--") + "-" + (Second.Count() == 3 ? Second[1] : "--");
+                    return Total;
+                }
+                txtNaka.Text = NakaGlobal;
+                txtBarcode1.Text = txtBarcode2.Text = string.Empty;
+                txtBarcode1.Focus();
+                dataGridView1.DataSource = Result;
+                SetPnlFooter();
+                InputLanguage.CurrentInputLanguage = InputLanguage.FromCulture(new System.Globalization.CultureInfo(1));
             }
-            txtNaka.Text = NakaGlobal;
-            txtBarcode1.Text = txtBarcode2.Text = string.Empty;
-            txtBarcode1.Focus();
-            dataGridView1.DataSource = Result;
-            SetPnlFooter();
+            catch (Exception ex)
+            {
+                lblMsg.Text = ex.ToString();
+            }
         }
         private void SetPnlFooter()
         {
@@ -91,6 +103,7 @@ namespace BarcodeSolution
         private void InitializeComponent()
         {
             this.pnlTop = new System.Windows.Forms.Panel();
+            this.lblMsg = new System.Windows.Forms.Label();
             this.txtBarcode2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -125,6 +138,7 @@ namespace BarcodeSolution
             // 
             // pnlTop
             // 
+            this.pnlTop.Controls.Add(this.lblMsg);
             this.pnlTop.Controls.Add(this.txtBarcode2);
             this.pnlTop.Controls.Add(this.label5);
             this.pnlTop.Controls.Add(this.panel3);
@@ -136,8 +150,18 @@ namespace BarcodeSolution
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(684, 108);
+            this.pnlTop.Size = new System.Drawing.Size(684, 133);
             this.pnlTop.TabIndex = 0;
+            // 
+            // lblMsg
+            // 
+            this.lblMsg.BackColor = System.Drawing.Color.Salmon;
+            this.lblMsg.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblMsg.Location = new System.Drawing.Point(0, 113);
+            this.lblMsg.Name = "lblMsg";
+            this.lblMsg.Size = new System.Drawing.Size(684, 20);
+            this.lblMsg.TabIndex = 7;
+            this.lblMsg.Text = "پيغام‌ها";
             // 
             // txtBarcode2
             // 
@@ -371,9 +395,9 @@ namespace BarcodeSolution
             this.pnlMain.Controls.Add(this.dataGridView1);
             this.pnlMain.Controls.Add(this.txtSearch);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 108);
+            this.pnlMain.Location = new System.Drawing.Point(0, 133);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(684, 175);
+            this.pnlMain.Size = new System.Drawing.Size(684, 150);
             this.pnlMain.TabIndex = 2;
             // 
             // dataGridView1
@@ -387,7 +411,7 @@ namespace BarcodeSolution
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(684, 149);
+            this.dataGridView1.Size = new System.Drawing.Size(684, 124);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellDoubleClick);
             this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DataGridView1_KeyDown);
@@ -435,56 +459,51 @@ namespace BarcodeSolution
         {
             if (!txtBarcode1.Text.StartsWith("P"))
             {
-                MessageBox.Show("باركد اين قسمت بايد با حرف P شروع شود", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "باركد اين قسمت بايد با حرف P شروع شود";
                 txtBarcode1.Focus();
                 txtBarcode1.SelectAll();
                 return;
             }
             if (!txtBarcode2.Text.StartsWith("S"))
             {
-                MessageBox.Show("باركد اين قسمت بايد با حرف S شروع شود", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "باركد اين قسمت بايد با حرف S شروع شود";
                 txtBarcode2.Focus();
                 txtBarcode2.SelectAll();
                 return;
             }
             if (txtNaka.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("نام كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "نام كالا نميتواند خالي باشد";
                 txtNaka.Focus();
                 return;
             }
             if (txtBarcode1.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("كد كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "كد كالا نميتواند خالي باشد";
                 txtBarcode1.Focus();
                 return;
             }
             if (txtBarcode2.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("كد كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "كد كالا نميتواند خالي باشد";
                 txtBarcode2.Focus();
                 return;
             }
-            if (Connection.CrudService.BarcodeCrud.CheckForRepetitive(SetBarcode(txtBarcode2.Text.Trim())))
+            if (Connection.CrudService.BarcodeCrud.CheckForRepetitive(SetBarcode(txtBarcode2.Text.Trim()), ShkaGlobal))
             {
-                //string naka = Connection.CrudService.BarcodeCrud.ReadByBarcode(SetBarcode(txtBarcode1.Text.Trim()), SetBarcode(txtBarcode2.Text.Trim()));
-                //if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
-                //{
-                //    return;
-                //}
-                MessageBox.Show("اين كد كالا قبلا تعريف شده است", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "اين كد كالا قبلا تعريف شده است";
                 txtBarcode2.Focus();
                 txtBarcode2.SelectAll();
                 return;
             }
             if (Connection.CrudService.BarcodeCrud.Create(new Connection.Model.TblBarcode() { GoodsID = ShkaGlobal, Barcode1 = SetBarcode(txtBarcode1.Text.Trim(), true), Barcode2 = SetBarcode(txtBarcode2.Text.Trim(), true) }))
             {
-                MessageBox.Show("ثبت با موفقيت انجام شد");
                 LoadData();
             }
             else
             {
                 MessageBox.Show("ثبت با خطا مواجه شد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblMsg.Text = "ثبت با خطا مواجه شد";
             }
         }
         private void LoadEdit()
@@ -508,56 +527,46 @@ namespace BarcodeSolution
         }
         private void BtnSaveEdit_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show($"آيا از ويرايش اطمينان داريد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
-            {
-                return;
-            }
             if (!txtBarcodeEdit1.Text.StartsWith("P"))
             {
-                MessageBox.Show("باركد اين قسمت بايد با حرف P شروع شود", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "باركد اين قسمت بايد با حرف P شروع شود";
                 txtBarcodeEdit1.Focus();
                 txtBarcodeEdit1.SelectAll();
                 return;
             }
             if (!txtBarcodeEdit2.Text.StartsWith("S"))
             {
-                MessageBox.Show("باركد اين قسمت بايد با حرف S شروع شود", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "باركد اين قسمت بايد با حرف S شروع شود";
                 txtBarcodeEdit2.Focus();
                 txtBarcodeEdit2.SelectAll();
                 return;
             }
             if (txtBarcodeEdit1.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("كد كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "كد كالا نميتواند خالي باشد";
                 txtBarcodeEdit1.Focus();
                 return;
             }
             if (txtBarcodeEdit2.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("كد كالا نميتواند خالي باشد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "كد كالا نميتواند خالي باشد";
                 txtBarcodeEdit2.Focus();
                 return;
             }
-            if (Connection.CrudService.BarcodeCrud.CheckForRepetitive(SetBarcode(txtBarcodeEdit2.Text.Trim()), ShkaGlobal))
+            if (Connection.CrudService.BarcodeCrud.CheckForRepetitiveEdited(SetBarcode(txtBarcodeEdit2.Text.Trim()), ShkaGlobal, Instance.RowID))
             {
-                //string naka = Connection.CrudService.BarcodeCrud.ReadByBarcode(SetBarcode(txtBarcodeEdit1.Text), SetBarcode(txtBarcodeEdit2.Text.Trim()), ShkaGlobal);
-                //if (MessageBox.Show($"اين باركد براي كالاي {naka} قبلا تعريف شده است، آيا ميخواهيد مجددا اين باركد را تعريف كنيد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
-                //{
-                //    return;
-                //}
-                MessageBox.Show("اين كد كالا قبلا تعريف شده است", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "اين كد كالا قبلا تعريف شده است";
                 txtBarcodeEdit2.Focus();
                 txtBarcodeEdit2.SelectAll();
                 return;
             }
             if (Connection.CrudService.BarcodeCrud.Update(new Connection.Model.TblBarcode() { RowID = Instance.RowID, GoodsID = ShkaGlobal, Barcode1 = SetBarcode(txtBarcodeEdit1.Text.Trim(), true), Barcode2 = SetBarcode(txtBarcodeEdit2.Text.Trim(), true) }))
             {
-                MessageBox.Show("ويرايش با موفقيت انجام شد");
                 LoadData();
             }
             else
             {
-                MessageBox.Show("ويرايش با خطا مواجه شد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblMsg.Text = "ويرايش با خطا مواجه شد";
             }
         }
         private async void Txtsearch_TextChanged(object sender, EventArgs e)
@@ -790,12 +799,12 @@ namespace BarcodeSolution
         }
         private string SetBarcode(string Code, bool ShowMsg = false)
         {
-            if (Code.Contains("-"))
+            if (Code.Split('-').Count() >= 3)
             {
                 return Code;
             }
-            Code = Code.ToUpper().Replace("S01", "S01-");
-            Code = Code.ToUpper().Replace("P", "P-");
+            if (!Code.StartsWith("S01-")) Code = Code.ToUpper().Replace("S01", "S01-");
+            if (!Code.StartsWith("P-")) Code = Code.ToUpper().Replace("P", "P-");
             if (Code.Contains("S01") && Code.Length >= 11)
             {
                 Code = Code.Substring(0, 4) + Code.Substring(4, 7) + "-" + (Code.Length > 11 ? Code.Substring(11, Code.Length - 11) : "");
@@ -806,7 +815,7 @@ namespace BarcodeSolution
             }
             else if (ShowMsg)
             {
-                MessageBox.Show("كد وارد شده با فرمت باركد مغايرت دارد\r\n" + Code + "\r\n" + "لطفا كالا را مجددا ويرايش كنيد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading);
+                lblMsg.Text = "كد وارد شده با فرمت باركد مغايرت دارد###" + Code + "###" + "لطفا كالا را مجددا ويرايش كنيد";
             }
             return Code;
         }

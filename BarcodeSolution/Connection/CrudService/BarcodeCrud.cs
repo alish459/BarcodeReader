@@ -87,13 +87,13 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string CodeS)
+        public static bool CheckForRepetitive(string CodeS,int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblBarcode.Any(a => a.Barcode2 == CodeS);
+                    return context.TblBarcode.Any(a => a.Barcode2.ToLower() == CodeS.ToLower() && a.GoodsID==ID);
                 }
                 catch (Exception ex)
                 {
@@ -102,48 +102,18 @@ namespace Connection.CrudService
                 }
             }
         }
-        public static bool CheckForRepetitive(string CodeS, int ID)
+        public static bool CheckForRepetitiveEdited(string CodeS, int GoodsID, int ID)
         {
             using (var context = new Connection.Model.BarcodeEntity())
             {
                 try
                 {
-                    return context.TblBarcode.Any(a => (a.Barcode2 == CodeS) && a.GoodsID != ID);
+                    return context.TblBarcode.Any(a => (a.Barcode2.ToLower() == CodeS.ToLower()) && a.RowID != ID && a.GoodsID == GoodsID);
                 }
                 catch (Exception ex)
                 {
                     System.Windows.Forms.MessageBox.Show(ex.ToString());
                     return false;
-                }
-            }
-        }
-        public static string ReadByBarcode(string Code1, string Code2)
-        {
-            using (var context = new Connection.Model.BarcodeEntity())
-            {
-                try
-                {
-                    return context.TblBarcode.FirstOrDefault(a => a.Barcode1 == Code1 || a.Barcode2 == Code2).TblInventory.Name;
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.ToString());
-                    return string.Empty;
-                }
-            }
-        }
-        public static string ReadByBarcode(string Code1, string Code2, int ID)
-        {
-            using (var context = new Connection.Model.BarcodeEntity())
-            {
-                try
-                {
-                    return context.TblBarcode.FirstOrDefault(a => (a.Barcode1 == Code1 || a.Barcode2 == Code2) && a.GoodsID != ID).TblInventory.Name;
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.ToString());
-                    return string.Empty;
                 }
             }
         }

@@ -1,9 +1,9 @@
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.dll
-D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\Connection.dll.config
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\Connection.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\Connection.pdb
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.SqlServer.dll
+D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.SqlServer.xml
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.Migrations.PersianMG.resources
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.GenerateResource.cache
