@@ -809,7 +809,7 @@ namespace BarcodeSolution
             {
                 Code = Code.Substring(0, 4) + Code.Substring(4, 7) + "-" + (Code.Length > 11 ? Code.Substring(11, Code.Length - 11) : "");
             }
-            else if (Code.Length >= 10)
+            else if (Code.Contains("P") && Code.Length >= 10)
             {
                 Code = Code.Substring(0, 2) + Code.Substring(2, 8) + "-" + (Code.Length > 10 ? Code.Substring(10, Code.Length - 10) : "");
             }

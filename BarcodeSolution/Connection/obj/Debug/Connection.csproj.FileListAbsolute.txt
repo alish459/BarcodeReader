@@ -11,3 +11,16 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.CopyComplete
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.pdb
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\bin\Debug\Connection.dll.config
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\bin\Debug\Connection.dll
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\bin\Debug\Connection.pdb
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.dll
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.SqlServer.dll
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.xml
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\bin\Debug\EntityFramework.SqlServer.xml
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.Migrations.PersianMG.resources
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.GenerateResource.cache
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.CoreCompileInputs.cache
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.csproj.CopyComplete
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.dll
+D:\BarcodeProject\BarcodeReader\BarcodeSolution\Connection\obj\Debug\Connection.pdb
