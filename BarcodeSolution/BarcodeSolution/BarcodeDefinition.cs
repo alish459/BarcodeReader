@@ -838,5 +838,34 @@ namespace BarcodeSolution
             ((TextBox)sender).Text = SetBarcode(((TextBox)sender).Text.Trim());
             ((TextBox)sender).SelectionStart = ((TextBox)sender).TextLength;
         }
+        private void Delete()
+        {
+            if (dataGridView1.RowCount > 0)
+            {
+                if (dataGridView1.CurrentRow == null) dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["GoodsName"];
+                var InstanceHere = ((Connection.Services.GoodsService)dataGridView1.CurrentRow.DataBoundItem);
+                if (MessageBox.Show("آیا از حذف این ردیف اطمینان دارید؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == DialogResult.Yes)
+                {
+                    if (Connection.CrudService.BarcodeCrud.Delete(InstanceHere.RowID))
+                    {
+                        lblMsg.Text = "حذف با موفقیت انجام شد";
+                        LoadData();
+                    }
+                    else
+                    {
+                        lblMsg.Text = "حذف با خطا مواجه شد";
+                    }
+                }
+            }
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Delete)
+            {
+                Delete();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
     }
 }
