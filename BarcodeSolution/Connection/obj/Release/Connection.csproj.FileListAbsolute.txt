@@ -26,3 +26,17 @@ D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connectio
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csproj.CopyComplete
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.dll
 D:\Barcode Reader\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.pdb
+D:\BarcodeReader\BarcodeSolution\Connection\bin\Release\Connection.dll.config
+D:\BarcodeReader\BarcodeSolution\Connection\bin\Release\Connection.dll
+D:\BarcodeReader\BarcodeSolution\Connection\bin\Release\Connection.pdb
+D:\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFramework.dll
+D:\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFramework.SqlServer.dll
+D:\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFramework.xml
+D:\BarcodeReader\BarcodeSolution\Connection\bin\Release\EntityFramework.SqlServer.xml
+D:\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csprojAssemblyReference.cache
+D:\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.Migrations.PersianMG.resources
+D:\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csproj.GenerateResource.cache
+D:\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csproj.CoreCompileInputs.cache
+D:\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.csproj.CopyComplete
+D:\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.dll
+D:\BarcodeReader\BarcodeSolution\Connection\obj\Release\Connection.pdb

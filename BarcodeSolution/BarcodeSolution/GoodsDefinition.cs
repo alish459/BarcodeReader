@@ -26,6 +26,7 @@ namespace BarcodeSolution
         private System.Windows.Forms.Panel pnlMain;
         private List<Connection.Model.TblInventory> Result = new List<Connection.Model.TblInventory>();
         private Connection.Model.TblInventory Instance = new Connection.Model.TblInventory();
+        private Button btnRemove;
         private bool isBusyProcessing = false;
         public GoodsDefinition()
         {
@@ -76,6 +77,7 @@ namespace BarcodeSolution
             this.pnlMain = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlFooter.SuspendLayout();
@@ -100,9 +102,9 @@ namespace BarcodeSolution
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(164, 3);
+            this.panel1.Location = new System.Drawing.Point(155, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(195, 33);
+            this.panel1.Size = new System.Drawing.Size(204, 33);
             this.panel1.TabIndex = 3;
             // 
             // button2
@@ -164,11 +166,12 @@ namespace BarcodeSolution
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnRemove);
             this.panel2.Controls.Add(this.btnCancelEdit);
             this.panel2.Controls.Add(this.btnSaveEdit);
-            this.panel2.Location = new System.Drawing.Point(164, 6);
+            this.panel2.Location = new System.Drawing.Point(78, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(195, 33);
+            this.panel2.Size = new System.Drawing.Size(281, 33);
             this.panel2.TabIndex = 3;
             // 
             // btnCancelEdit
@@ -186,7 +189,7 @@ namespace BarcodeSolution
             // btnSaveEdit
             // 
             this.btnSaveEdit.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnSaveEdit.Location = new System.Drawing.Point(105, 1);
+            this.btnSaveEdit.Location = new System.Drawing.Point(189, 1);
             this.btnSaveEdit.Name = "btnSaveEdit";
             this.btnSaveEdit.Size = new System.Drawing.Size(82, 29);
             this.btnSaveEdit.TabIndex = 0;
@@ -252,6 +255,18 @@ namespace BarcodeSolution
             this.txtSearch.Enter += new System.EventHandler(this.TxtNaka_Enter);
             this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txtsearch_KeyDown);
             this.txtSearch.Leave += new System.EventHandler(this.TxtNaka_Leave);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.Red;
+            this.btnRemove.ForeColor = System.Drawing.Color.Transparent;
+            this.btnRemove.Location = new System.Drawing.Point(102, 1);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(82, 29);
+            this.btnRemove.TabIndex = 2;
+            this.btnRemove.Text = "حذف";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // GoodsDefinition
             // 
@@ -580,6 +595,34 @@ namespace BarcodeSolution
         private void TxtNaka_Leave(object sender, EventArgs e)
         {
             ((TextBox)sender).BackColor = System.Drawing.Color.White;
+        }
+
+        private void BtnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show($"آيا از حذف اطمينان داريد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
+                {
+                    return;
+                }
+                if (Connection.CrudService.InventoryCrud.Delete(ID: Instance.Shka))
+                {
+                    MessageBox.Show("حذف با موفقيت انجام شد");
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("حذف با خطا مواجه شد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+
+            }
         }
     }
 }

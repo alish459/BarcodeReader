@@ -40,6 +40,7 @@ namespace BarcodeSolution
         private bool isBusyProcessing = false;
         private int ShkaGlobal;
         private Label lblMsg;
+        private Button btnRemove;
         private string NakaGlobal;
         public BarcodeDefinition(int ShkaID, string Naka)
         {
@@ -54,8 +55,10 @@ namespace BarcodeSolution
             try
             {
                 lblMsg.Text = "پيغام : ";
+                int i = 1;
                 Result = Connection.CrudService.BarcodeCrud.ReturnAllGoodsByService(ShkaGlobal);
                 Result.ForEach(a => a.Total = GetTotal(a.GoodsBarcode1, a.GoodsBarcode2));
+                Result.ForEach(a => a.Radif = i++);
                 string GetTotal(string GoodsBarcode1, string GoodsBarcode2)
                 {
                     if (GoodsBarcode2 == null) return "--";
@@ -90,10 +93,22 @@ namespace BarcodeSolution
             dataGridView1.Columns["GoodsBarcode1"].Visible = true;
             dataGridView1.Columns["GoodsBarcode2"].Visible = true;
             dataGridView1.Columns["Total"].Visible = true;
+            dataGridView1.Columns["Radif"].Visible = true;
             dataGridView1.Columns["GoodsName"].Width = 200;
             dataGridView1.Columns["GoodsBarcode1"].Width = 200;
             dataGridView1.Columns["GoodsBarcode2"].Width = 200;
+            dataGridView1.Columns["Radif"].Width = 100;
             dataGridView1.Columns["Total"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            foreach (var item in typeof(Connection.Services.GoodsService).GetProperties())
+            {
+                int i = 0;
+                dataGridView1.Columns["Radif"].DisplayIndex = i++;
+                dataGridView1.Columns["GoodsName"].DisplayIndex = i++;
+                dataGridView1.Columns["GoodsBarcode1"].DisplayIndex = i++;
+                dataGridView1.Columns["GoodsBarcode2"].DisplayIndex = i++;
+                dataGridView1.Columns["Total"].DisplayIndex = i++;
+            }
+            dataGridView1.Columns["Radif"].HeaderText = "Row NO";
             dataGridView1.Columns["GoodsName"].HeaderText = "Name";
             dataGridView1.Columns["GoodsBarcode1"].HeaderText = "Production NO.";
             dataGridView1.Columns["GoodsBarcode2"].HeaderText = "Serial NO.";
@@ -120,6 +135,7 @@ namespace BarcodeSolution
             this.txtBarcodeEdit2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.btnCancelEdit = new System.Windows.Forms.Button();
             this.btnSaveEdit = new System.Windows.Forms.Button();
             this.txtBarcodeEdit1 = new System.Windows.Forms.TextBox();
@@ -337,12 +353,25 @@ namespace BarcodeSolution
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.btnRemove);
             this.panel2.Controls.Add(this.btnCancelEdit);
             this.panel2.Controls.Add(this.btnSaveEdit);
-            this.panel2.Location = new System.Drawing.Point(481, 37);
+            this.panel2.Location = new System.Drawing.Point(399, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(195, 33);
+            this.panel2.Size = new System.Drawing.Size(277, 33);
             this.panel2.TabIndex = 3;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.Red;
+            this.btnRemove.ForeColor = System.Drawing.Color.Transparent;
+            this.btnRemove.Location = new System.Drawing.Point(97, 2);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(82, 29);
+            this.btnRemove.TabIndex = 3;
+            this.btnRemove.Text = "حذف";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // btnCancelEdit
             // 
@@ -359,7 +388,7 @@ namespace BarcodeSolution
             // btnSaveEdit
             // 
             this.btnSaveEdit.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnSaveEdit.Location = new System.Drawing.Point(105, 1);
+            this.btnSaveEdit.Location = new System.Drawing.Point(190, 1);
             this.btnSaveEdit.Name = "btnSaveEdit";
             this.btnSaveEdit.Size = new System.Drawing.Size(82, 29);
             this.btnSaveEdit.TabIndex = 0;
@@ -410,6 +439,7 @@ namespace BarcodeSolution
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(684, 124);
             this.dataGridView1.TabIndex = 0;
@@ -866,6 +896,33 @@ namespace BarcodeSolution
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+        private void BtnRemove_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show($"آيا از حذف اطمينان داريد؟", "پيغام", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.RtlReading) == (DialogResult.No))
+                {
+                    return;
+                }
+                if (Connection.CrudService.BarcodeCrud.Delete(ID: Instance.RowID))
+                {
+                    MessageBox.Show("حذف با موفقيت انجام شد");
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("حذف با خطا مواجه شد", "پيغام", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+
+            }
         }
     }
 }

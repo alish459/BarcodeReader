@@ -56,6 +56,11 @@ namespace Connection.CrudService
             {
                 try
                 {
+                    if (context.TblBarcode.Any(a=>a.GoodsID==ID))
+                    {
+                        System.Windows.Forms.MessageBox.Show("براي اين كالا باركد تعريف شده است، ابتدا باركدها را حذف نماييد");
+                        return false;
+                    }
                     context.TblInventory.Remove(context.TblInventory.Find(ID));
                     context.SaveChanges();
                     return true;
